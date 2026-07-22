@@ -57,4 +57,4 @@ class Config:
 
     # Dial down the weight of cards you've already voted on, so you're not
     # constantly presented with the same cards.
-    PICK_ALREADY_VOTED_FACTOR = 0.05
+    PICK_ALREADY_VOTED_FACTOR = 0.005
