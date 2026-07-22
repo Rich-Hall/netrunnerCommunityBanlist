@@ -95,6 +95,9 @@ def iter_pool_cards(card_pool_id: str):
                 "filter[card_pool_id]": card_pool_id,
                 "page[number]": page,
                 "page[size]": PAGE_SIZE,
+                # Without a stable sort, NRDB v3 page windows overlap and skip
+                # cards (e.g. Synapse Global never appears in the pool walk).
+                "sort": "id",
             },
         )
         data = payload.get("data") or []
