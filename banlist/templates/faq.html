@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - Community Banlist{% endblock %}
+
+{% block content %}
+<section class="faq">
+  <h1>FAQ</h1>
+  <p>Common questions about this site.</p>
+
+  <dl>
+    <dt>What's this site?</dt>
+    <dd>
+      <p>
+        This is a tool to gauge community sentiment about the latest NSG banlist.
+        You can think of it a bit like opinion polling, but for netrunner cards.
+        Vote on the cards you think should be banned or unbanned, and see how the
+        community feels about them.
+      </p>
+    </dd>
+
+    <dt>Is this an official banlist? Are you affiliated with Null Signal Games in any way?</dt>
+    <dd>
+      <p>lol, no</p>
+    </dd>
+
+    <dt>Can I use these rankings to be a jerk to the Standard Balance Team folks?</dt>
+    <dd>
+      <p>No.</p>
+      <ol>
+        <li>
+          You're voting on these cards in isolation, whereas the NSG folks are
+          considering a list as a whole, along with a vision about how the game
+          <em>should</em> look. It's a fundamentally different approach which is
+          obviously going to produce fundamentally different results.
+        </li>
+        <li>
+          They're a group of volunteers who donate their time to the community
+          to try to keep the meta healthy. They're also really nice people.
+          Don't be a jerk to them.
+        </li>
+      </ol>
+    </dd>
+
+    <dt>
+      Isn't this just a ripoff of
+      <a href="https://trash-or-busto.herokuapp.com/">Trash or Busto</a>?
+    </dt>
+    <dd>
+      <p>Well, kind of.</p>
+      <p>
+        It was definitely an inspiration, but I think busto-ness and
+        ban-ability are fundamentally different things. At time of writing, for
+        example, Spin Doctor is listed as more busto than a number of cards on
+        the NSG banlist e.g. Keeling, Nanisivik, Cyberdex Sandbox. Boomerang is
+        more busto than Bukhgalter. I don't think it's controvertial to imagine
+        that Keeling should be banned and Spindo should not. But maybe the votes
+        will disagree...
+      </p>
+    </dd>
+
+    <dt>How does this site use cookies?</dt>
+    <dd>
+      <p>
+        This site sets a single simple cookie to track your voting history. You're assigned
+        a random user ID stored in a cookie when you visit the site, and your votes are associated
+        with that ID. This is what allows the site to present you with a banner that says "You've already
+        voted on this card!" when you try to vote for it again.
+      </p>
+      <p>
+        I'm not doing anything nefarious with it like selling your netrunner card voting record to
+        advertisers or anything like that. I don't have a way to map user ID to your real identity either.
+      </p>
+    </dd>
+
+    <dt>I found a way to cheat the system and vote multiple times for the same card!</dt>
+    <dd>
+      <p>
+        This is definitely not a scientifically accurate poll. If you're really determined
+        to vote for the same card multiple times, you can use a different browser or device to
+        vote, or use an incognito window, or clear your cookies, or whatever. But don't you
+        have better things to do?
+      </p>
+    </dd>
+
+    <dt>Why does your site say that card X should be banned/unbanned? That's ridiculous!</dt>
+    <dd>
+      <p>Some people just have really bad opinions <s>about netrunner</s>.</p>
+    </dd>
+  </dl>
+</section>
+{% endblock %}

@@ -1,0 +1,140 @@
+/* Minimum layout helpers — everything else is browser default */
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  line-height: 1.5;
+  color: #111;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+.site-header {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+nav a {
+  margin-right: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.card-art {
+  display: block;
+  max-width: 18rem;
+  height: auto;
+}
+
+.vote-form button {
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.faq dt {
+  font-weight: 700;
+  margin-top: 1.25rem;
+}
+
+.faq dt:first-of-type {
+  margin-top: 0;
+}
+
+.faq dd {
+  margin: 0.35rem 0 0;
+}
+
+.banlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  table-layout: fixed;
+}
+
+.banlist-table th {
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.banlist-table td {
+  vertical-align: top;
+  width: 50%;
+  padding: 0;
+}
+
+.banlist-table tbody tr:nth-child(even) {
+  background: #eee;
+}
+
+.diff-entry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  align-items: baseline;
+  padding: 0.35rem 0.5rem;
+  color: #111;
+}
+
+/* Card names read as list items; link affordance on hover only */
+.diff-entry a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.diff-entry a:hover {
+  text-decoration: underline;
+}
+
+.vote-share {
+  margin-left: auto;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.diff-entry.addition,
+.diff-entry.addition a {
+  color: #060;
+}
+
+.diff-entry.removal,
+.diff-entry.removal a {
+  color: #a00;
+}
+
+.diff-entry.addition .vote-share,
+.diff-entry.removal .vote-share {
+  color: inherit;
+  opacity: 0.75;
+}
+
+.sign {
+  width: 1rem;
+  flex-shrink: 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.sign.spacer {
+  visibility: hidden;
+}

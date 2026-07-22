@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Vote - Community Banlist{% endblock %}
+
+{% block content %}
+<section>
+  <h1>Should this card be banned?</h1>
+
+  <form method="get" action="{{ url_for('main.index') }}">
+    <label class="sr-only" for="card-search">Find a card</label>
+    <input
+      id="card-search"
+      type="search"
+      name="q"
+      value="{{ query or '' }}"
+      placeholder="Search for a card by name…"
+      autocomplete="off"
+    >
+    <button type="submit">Find</button>
+  </form>
+
+  {% if search_matches %}
+    <div>
+      <p>Multiple matches for “{{ query }}” — pick one:</p>
+      <ul>
+        {% for match in search_matches %}
+          <li>
+            <a href="{{ url_for('main.index', card=match.id) }}">{{ match.title }}</a>
+            <span>{{ match.side }} · {{ match.faction }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elif not card %}
+    <p>No cards in the database yet. Run <code>flask sync-cards</code> in the container.</p>
+  {% else %}
+    <article>
+      <h2>{{ card.title }}</h2>
+      {% if card.image_url %}
+        <img class="card-art" src="{{ card.image_url }}" alt="{{ card.title }}">
+      {% endif %}
+      {% if existing_vote %}
+        <p>
+          You last voted:
+          <strong>{% if existing_vote.wants_ban %}Ban{% else %}Keep{% endif %}</strong>
+          — submit again to overwrite.
+        </p>
+      {% endif %}
+    </article>
+
+    <form class="vote-form" method="post" action="{{ url_for('main.vote', card_id=card.id) }}">
+      <button type="submit" name="choice" value="ban">Ban</button>
+      <button type="submit" name="choice" value="keep">Keep</button>
+    </form>
+
+    <p>
+      <a href="{{ url_for('main.index') }}">Skip to another card</a>
+    </p>
+  {% endif %}
+</section>
+{% endblock %}

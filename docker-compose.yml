@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      FLASK_APP: wsgi:app
+      FLASK_DEBUG: "1"
+      DATABASE_URL: sqlite:////app/data/app.db
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env — see .env.example}
+    volumes:
+      - .:/app
+      - banlist-data:/app/data
+    command: flask run --host=0.0.0.0 --port=5000 --reload
+
+volumes:
+  banlist-data:

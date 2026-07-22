@@ -1,0 +1,30 @@
+[project]
+name = "netrunner-community-banlist"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["banlist", "."]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "D",   # pydocstyle
+]
+ignore = [
+    "D203",  # conflicts with D211 (Google)
+    "D213",  # conflicts with D212 (Google)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"wsgi.py" = ["D100"]

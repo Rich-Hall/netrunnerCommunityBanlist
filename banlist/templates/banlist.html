@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Banlist - Community Banlist{% endblock %}
+
+{% macro banlist_cell(entry) -%}
+  {%- if entry -%}
+    {%- set card, status, ban_count, total, share = entry -%}
+    <div class="diff-entry {{ status }}">
+      {% if status == "addition" %}
+        <span class="sign">+</span>
+      {% elif status == "removal" %}
+        <span class="sign">−</span>
+      {% else %}
+        <span class="sign spacer"></span>
+      {% endif %}
+      <a href="{{ url_for('main.index', card=card.id) }}">{{ card.title }}</a>
+      <span class="vote-share">
+        {% if share is none %}
+          no votes
+        {% else %}
+          {{ '%.0f'|format(share * 100) }}% ban ({{ ban_count }}/{{ total }})
+        {% endif %}
+      </span>
+    </div>
+  {%- endif -%}
+{%- endmacro %}
+
+{% block content %}
+<section>
+  <h1>Banlist</h1>
+  <p>Comparison with NSG's latest banlist. Cards are banned if more than 50% of the votes are to ban them.</p>
+
+  {% if not banlist_rows %}
+    <p>None yet</p>
+  {% else %}
+    <table class="banlist-table">
+      <thead>
+        <tr>
+          <th>Runner</th>
+          <th>Corp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for runner, corp in banlist_rows %}
+          <tr>
+            <td>{{ banlist_cell(runner) }}</td>
+            <td>{{ banlist_cell(corp) }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <section>
+    <h2>Other Considerations</h2>
+    <p>
+      The ten cards with the highest ban percentages that are not on the above lists are:
+    </p>
+    {% if not controversial %}
+      <p>Not enough off-list votes yet.</p>
+    {% else %}
+      <ol>
+        {% for card, ban_count, total, share in controversial %}
+          <li>
+            <a href="{{ url_for('main.index', card=card.id) }}">{{ card.title }}</a>
+            ({{ card.side }})
+            — {{ '%.0f'|format(share * 100) }}% ban ({{ ban_count }}/{{ total }})
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

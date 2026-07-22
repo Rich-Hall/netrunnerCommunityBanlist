@@ -1,0 +1,41 @@
+{
+  "name": "Community Banlist",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "web",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "forwardPorts": [5000],
+  "portsAttributes": {
+    "5000": {
+      "label": "Flask",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt && mkdir -p data",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.ruff": "explicit",
+          "source.organizeImports.ruff": "explicit"
+        },
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+      }
+    }
+  },
+  "remoteEnv": {
+    "FLASK_APP": "wsgi:app",
+    "FLASK_DEBUG": "1"
+  }
+}
